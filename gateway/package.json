@@ -1,0 +1,12 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd src/main/app && npm start",
+    "test": "cd src/main/app && npm test"
+  },
+  "author": "",
+  "license": "ISC"
+}

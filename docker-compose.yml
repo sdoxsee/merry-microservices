@@ -1,0 +1,15 @@
+version: '2'
+services:
+  policyservice:
+    image: sdoxsee/policyservice
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,swagger
+      - SPRING_LIQUIBASE_CONTEXTS=dev #i.e. remove "faker"
+      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://keycloak:9080/auth/realms/jhipster
+    ports:
+      - 8080:8080
+  keycloak: # use jhipster's keycloak.yml "as is"
+    extends:
+      file: keycloak.yml
+      service: keycloak
