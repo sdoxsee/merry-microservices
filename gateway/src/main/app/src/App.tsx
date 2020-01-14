@@ -8,7 +8,6 @@ import NoteTable from './tables/NoteTable'
 import { Note } from './Note'
 import { Container, Row, Col, Jumbotron, Button, Form, Input } from 'reactstrap'
 import { useCookies } from 'react-cookie'
-import SnowStorm from 'react-snowstorm'
 
 const App = () => {
   // Data
@@ -20,7 +19,6 @@ const App = () => {
   const [ currentNote, setCurrentNote ] = useState(initialFormState)
   const [ editing, setEditing ] = useState(false)
   const [ isAuthenticated, setAuthenticated ] = useState(false)
-  const [ isSnowing, setSnowing ] = useState(false)
   const [ authenticatedUser, setAuthenticatedUser ] = useState('')
   const [ cookies ] = useCookies(['XSRF-TOKEN'])
 
@@ -34,17 +32,6 @@ const App = () => {
     }
   }
 
-  const hasPermission = async (permission: string) => {
-    try {
-      const response = await fetch('/api/policy-evaluation?policy=ui-gateway&permission=' + permission)
-      const body = await response.text()
-      return body === 'true'
-    } catch {
-      // add better error handling here (e.g. 401?)
-    }
-    return false
-  }
-
   useEffect(() => {
     // Create a scoped async function in the hook
     async function runAsync() {
@@ -55,12 +42,10 @@ const App = () => {
         if (body === '') {
           setAuthenticated(false)
           setAuthenticatedUser('')
-          setSnowing(false)
         } else {
           setAuthenticated(true)
           setAuthenticatedUser(body)
           getNotes()
-          setSnowing(await hasPermission('Snowing'))
         }
       } catch {
         // add better error handling here
@@ -142,7 +127,6 @@ const App = () => {
             <Input type="hidden" name="_csrf" value={cookies['XSRF-TOKEN']}/>
             <h3>Welcome {authenticatedUser}!</h3><Button color="secondary">Logout</Button>
           </Form>
-          {isSnowing && <SnowStorm targetElement="jumbotron"/>}
         </> :
         <Button onClick={login}>Login</Button>
         }

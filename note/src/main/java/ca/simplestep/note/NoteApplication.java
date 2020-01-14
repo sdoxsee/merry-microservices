@@ -1,7 +1,6 @@
 package ca.simplestep.note;
 
 import org.reactivestreams.Publisher;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -9,15 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -51,22 +44,15 @@ class WebConfig implements WebFluxConfigurer {
 				.andRoute(DELETE("/api/notes/{id}"), noteHandler::deleteById)
 				.andRoute(POST("/api/notes"), noteHandler::create);
 	}
-
-	@Bean
-	WebClient policyServiceWebClient() {
-		return WebClient.create("http://localhost:8080/");
-	}
 }
 
 @Component
 class NoteHandler {
 
 	private final NoteRepository noteRepository;
-	private final PolicyService policyService;
 
-	NoteHandler(NoteRepository noteRepository, PolicyService policyService) {
+	NoteHandler(NoteRepository noteRepository) {
 		this.noteRepository = noteRepository;
-		this.policyService = policyService;
 	}
 
 	Mono<ServerResponse> getById(ServerRequest r) {
@@ -74,17 +60,7 @@ class NoteHandler {
 	}
 
 	Mono<ServerResponse> getAll(ServerRequest r) {
-		return r.principal().flatMap((principal) -> {
-			Jwt jwt = ((JwtAuthenticationToken) principal).getToken();
-			return policyService.hasPermission(jwt, "CanRead")
-				.flatMap(canRead -> canRead ?
-						policyService.hasPermission(jwt, "CanReadConfidentialNotes")
-							.flatMap(canReadConfidentialNotes -> defaultReadResponse(
-									canReadConfidentialNotes ?
-											noteRepository.findAll() :
-											noteRepository.findByConfidentialFalse())) :
-						ServerResponse.status(HttpStatus.FORBIDDEN).build());
-		});
+		return defaultReadResponse(noteRepository.findAll());
 	}
 
 	Mono<ServerResponse> deleteById(ServerRequest r) {
@@ -134,9 +110,6 @@ interface NoteRepository extends ReactiveCrudRepository<Note, Long> {
 
 	@Query("SELECT * FROM note WHERE text = :text")
 	Flux<Note> findByText(String text);
-
-	@Query("SELECT * FROM note WHERE confidential = false")
-	Flux<Note> findByConfidentialFalse();
 }
 
 class Note {
@@ -179,32 +152,5 @@ class Note {
 		note.text = text;
 		note.confidential = confidential;
 		return note;
-	}
-}
-
-@Service
-class PolicyService {
-
-	@Value("${app.policy-name}")
-	private String appPolicyName;
-
-	private final WebClient webClient;
-
-	public PolicyService(WebClient webClient) {
-		this.webClient = webClient;
-	}
-
-	@Transactional(readOnly = true)
-	public Mono<Boolean> hasPermission(Jwt jwt, String permission) {
-		return this.webClient
-				.get()
-				.uri(uriBuilder -> uriBuilder
-						.path("/api/policy-evaluation")
-						.queryParam("policy", appPolicyName)
-						.queryParam("permission", permission)
-						.build())
-				.headers(headers -> headers.setBearerAuth(jwt.getTokenValue()))
-				.retrieve()
-				.bodyToMono(Boolean.class);
 	}
 }

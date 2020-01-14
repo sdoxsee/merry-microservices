@@ -13,8 +13,7 @@ spring:
             scope: openid,profile,email,offline_access
         provider:
           keycloak:
-            issuer-uri: http://keycloak:9080/auth/realms/jhipster
-            # issuer-uri: http://localhost:9080/auth/realms/jhipster
+            issuer-uri: http://localhost:9080/auth/realms/jhipster
   cloud:
     gateway:
       default-filters:
@@ -27,9 +26,3 @@ spring:
           uri: http://localhost:8081
           predicates:
             - Path=/api/notes/**
-        - id: policy-service
-          uri: http://localhost:8080
-          predicates:
-            - Path=/api/policy-evaluation/**
-          filters:
-            - RemoveResponseHeader=Set-Cookie # or else policy-service's XSRF-TOKEN clobbers the gateway's!
