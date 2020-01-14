@@ -1,14 +1,14 @@
 // adapted from https://github.com/taniarascia/react-hooks
 
-import './App.css';
+import './App.css'
 import React, { useState, Fragment, useEffect } from 'react'
 import AddNoteForm from './forms/AddNoteForm'
 import EditNoteForm from './forms/EditNoteForm'
 import NoteTable from './tables/NoteTable'
-import { Note } from './Note';
+import { Note } from './Note'
 import { Container, Row, Col, Jumbotron, Button, Form, Input } from 'reactstrap'
-import { useCookies } from 'react-cookie';
-import SnowStorm from 'react-snowstorm';
+import { useCookies } from 'react-cookie'
+import SnowStorm from 'react-snowstorm'
 
 const App = () => {
   // Data
@@ -22,12 +22,12 @@ const App = () => {
   const [ isAuthenticated, setAuthenticated ] = useState(false)
   const [ isSnowing, setSnowing ] = useState(false)
   const [ authenticatedUser, setAuthenticatedUser ] = useState('')
-  const [ cookies ] = useCookies(['XSRF-TOKEN']);
+  const [ cookies ] = useCookies(['XSRF-TOKEN'])
 
   const getNotes = async () => {
     try {
-      const response = await fetch('/api/notes');
-      const notes = await response.json();
+      const response = await fetch('/api/notes')
+      const notes = await response.json()
       setNotes(notes)
     } catch {
       // add better error handling here (e.g. 401?)
@@ -36,7 +36,7 @@ const App = () => {
 
   const hasPermission = async (permission: string) => {
     try {
-      const response = await fetch('/api/policy-evaluation?policy=ui-gateway&permission=' + permission);
+      const response = await fetch('/api/policy-evaluation?policy=ui-gateway&permission=' + permission)
       const body = await response.text()
       return body === 'true'
     } catch {
@@ -49,8 +49,8 @@ const App = () => {
     // Create a scoped async function in the hook
     async function runAsync() {
       try {
-        const response = await fetch('/api/user');
-        const body = await response.text();
+        const response = await fetch('/api/user')
+        const body = await response.text()
 
         if (body === '') {
           setAuthenticated(false)
@@ -101,7 +101,7 @@ const App = () => {
       }
     }).then(() => {
         getNotes()
-    });
+    })
   }
 
   const updateNote = (id: number, updatedNote: Note) => {
@@ -128,8 +128,8 @@ const App = () => {
   }
   
   const login = () => {
-    let port = (window.location.port ? ':' + window.location.port : '');
-    window.location.href = '//' + window.location.hostname + port + '/private';
+    let port = (window.location.port ? ':' + window.location.port : '')
+    window.location.href = '//' + window.location.hostname + port + '/private'
   }
 
   return (
@@ -177,4 +177,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App

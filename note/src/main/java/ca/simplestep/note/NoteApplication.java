@@ -45,7 +45,7 @@ class WebConfig implements WebFluxConfigurer {
 
 	@Bean
 	RouterFunction<ServerResponse> routerFunction(NoteHandler noteHandler) {
-		return route(GET("/api/notes"), noteHandler::all)
+		return route(GET("/api/notes"), noteHandler::getAll)
 				.andRoute(GET("/api/notes/{id}"), noteHandler::getById)
 				.andRoute(PUT("/api/notes/{id}"), noteHandler::updateById)
 				.andRoute(DELETE("/api/notes/{id}"), noteHandler::deleteById)
@@ -73,7 +73,7 @@ class NoteHandler {
 		return defaultReadResponse(this.noteRepository.findById(id(r)));
 	}
 
-	Mono<ServerResponse> all(ServerRequest r) {
+	Mono<ServerResponse> getAll(ServerRequest r) {
 		return r.principal().flatMap((principal) -> {
 			Jwt jwt = ((JwtAuthenticationToken) principal).getToken();
 			return policyService.hasPermission(jwt, "CanRead")

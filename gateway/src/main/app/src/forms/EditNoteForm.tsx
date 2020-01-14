@@ -26,7 +26,7 @@ const EditNoteForm = (props: Props) => {
   const handleInputChange = (event: Event) => {
     const { name, value } = event.target
 
-    let newval = value;
+    let newval = value
     if (name === 'confidential') {
       newval = !note.confidential
     }

@@ -3,7 +3,7 @@ import { Note } from '../Note'
 import { Table, Button } from 'reactstrap'
 
 interface Props {
-  notes: Note[];
+  notes: Note[]
   editRow: (note: Note) => void,
   deleteNote: (id: number) => void
 }

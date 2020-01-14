@@ -1,5 +1,5 @@
 export interface Note {
-  id: number;
-  text: string;
-  confidential: boolean;
+  id: number
+  text: string
+  confidential: boolean
 }

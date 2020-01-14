@@ -5,7 +5,7 @@ interface Props {
   addNote: (note: {text: string, confidential: boolean}) => void
 }
 interface Event {
-  target: any;
+  target: any
 }
 
 const AddUserForm = (props: Props) => {
@@ -15,7 +15,7 @@ const AddUserForm = (props: Props) => {
   const handleInputChange = (event: Event) => {
     const { name, value } = event.target
 
-    let newval = value;
+    let newval = value
     if (name === 'confidential') {
       newval = !note.confidential
     }
