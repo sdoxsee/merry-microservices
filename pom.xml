@@ -6,6 +6,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>gateway</module>
         <module>note</module>
+<!--        <module>policyservice</module>-->
     </modules>
 </project>
