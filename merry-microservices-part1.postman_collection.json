@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "aadf477c-cff4-4dd7-8a9f-9da2f3379514",
+		"name": "merry-microservices-part1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8081/api/notes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZc2pVZ25YdUx3UmZ5c3ZNNjduOFlpMFlIZnFrMjJUVGRzMnBCc0tPVmVNIn0.eyJqdGkiOiIwZjYyYmJiOC1mZmI2LTQwMTItYTIzNC05MWU4NWQ3OGM0M2MiLCJleHAiOjE1Nzg3MDkxODMsIm5iZiI6MCwiaWF0IjoxNTc4NzA4ODgzLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwODAvYXV0aC9yZWFsbXMvamhpcHN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNGM5NzM4OTYtNTc2MS00MWZjLTgyMTctMDdjNWQxM2EwMDRiIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViX2FwcCIsImF1dGhfdGltZSI6MTU3ODcwODg2Nywic2Vzc2lvbl9zdGF0ZSI6ImY4ZmQ1MzZkLTk2MWUtNGU3ZS1hYzA5LWE1NTZkZTdlZWJiMyIsImFjciI6IjAiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUk9MRV9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJST0xFX0FETUlOIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBqaGlwc3RlciBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl0sIm5hbWUiOiJBZG1pbiBBZG1pbmlzdHJhdG9yIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluaXN0cmF0b3IiLCJlbWFpbCI6ImFkbWluQGxvY2FsaG9zdCJ9.M3BhTIir4pOZj7kv1-_4oBNezxdy0u_k09ynuaJ8Bw9xtzW-rPm2zWIA3LnLdA67BRpFkPdcE02EfviIT1yLKIgZDj5xq3RwzY9GaSMZs9AdpUQcLgoEod7i89cw7watQk3LWPuVhYk7BZy8YGj6-cFNKMR-nNWSJA0wCeBeJCgUKMxSKZOCtsCBQnBOTSgs2awH_ZQEqx0lkHqQkNZSf-Nbodiff3mzD5KPxGCBhb5ixeEDamCWwS9b-TLmEkFOEqModPWsL-4q5ZRpyMNbmF5SJsCITvMlPyJiXWCws4GUSW5Nxy8vdIf2ZPcnTNroFIIRpbWqXpxyRRFS2LFYVg",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/javascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"notes"
+					]
+				},
+				"description": "Get notes"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8081/api/notes",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZc2pVZ25YdUx3UmZ5c3ZNNjduOFlpMFlIZnFrMjJUVGRzMnBCc0tPVmVNIn0.eyJqdGkiOiI3MjcyMzIwMC0zNjNiLTQwMTktYTgxNi0yNWEyMDgyOGY0M2EiLCJleHAiOjE1Nzg3MDkxNjcsIm5iZiI6MCwiaWF0IjoxNTc4NzA4ODY3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwODAvYXV0aC9yZWFsbXMvamhpcHN0ZXIiLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiNGM5NzM4OTYtNTc2MS00MWZjLTgyMTctMDdjNWQxM2EwMDRiIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoid2ViX2FwcCIsImF1dGhfdGltZSI6MTU3ODcwODg2Nywic2Vzc2lvbl9zdGF0ZSI6ImY4ZmQ1MzZkLTk2MWUtNGU3ZS1hYzA5LWE1NTZkZTdlZWJiMyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUk9MRV9VU0VSIiwib2ZmbGluZV9hY2Nlc3MiLCJST0xFX0FETUlOIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBqaGlwc3RlciBlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInJvbGVzIjpbIlJPTEVfVVNFUiIsIm9mZmxpbmVfYWNjZXNzIiwiUk9MRV9BRE1JTiIsInVtYV9hdXRob3JpemF0aW9uIl0sIm5hbWUiOiJBZG1pbiBBZG1pbmlzdHJhdG9yIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW4iLCJnaXZlbl9uYW1lIjoiQWRtaW4iLCJmYW1pbHlfbmFtZSI6IkFkbWluaXN0cmF0b3IiLCJlbWFpbCI6ImFkbWluQGxvY2FsaG9zdCJ9.ZSIqEewWhY3MSHDQcqKBPAtPmNn1HsFpFO08sOv7PAEwE_vMombhgRhxVGJfzkFjrde3s81LFlb_Lx6NXwbqUIiiqcBwKPVVerHwDOlwNVysOHrc0Q5UlDTFfV5PZa-cMsSno_N6CwERstuEbADWarCqQohI8fwO8nO0Eq2iPUsG55V3BlD_nF6hjLFqYXzjakOmSdimwVHgcEwREbBa7yZgTOwBTYufRUtceSmhTu5RPvs4iElrY4aKhw7ZrlQiHTuy8TBOkWkQ0lBn6AMwtDX8ExtkhUrrEiaIslnHTWk5FaPNscCKGkZO3dkcpAzlcQQ1EiXid4qI6s0EggBwgQ",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"text\":\"Here's a confidential note\",\n   \"confidential\": \"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"notes"
+					]
+				},
+				"description": "Post note"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
