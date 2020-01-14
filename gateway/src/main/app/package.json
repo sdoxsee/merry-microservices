@@ -17,6 +17,7 @@
     "react-cookie": "^4.0.1",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
+    "react-snowstorm": "0.0.3",
     "reactstrap": "^8.2.0",
     "typescript": "^3.7.3"
   },
